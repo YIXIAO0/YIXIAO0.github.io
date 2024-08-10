@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manor Lords Bot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏰</text></svg>">
+    <style>
+        @font-face {
+            font-family: 'BellGothicMagda';
+            src: url('https://fonts.cdnfonts.com/css/bell-gothic-std') format('woff2');
+        }
+
+        .title-font {
+            font-family: 'BellGothicMagda', 'Inter', sans-serif;
+            letter-spacing: -0.03em;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E1E1E',
+                        secondary: '#F5F5F7',
+                        accent: '#0071E3',
+                        background: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background font-sans text-primary">
+    <header class="bg-secondary p-4 sm:p-6">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-light title-font">Manor Lords Bot</h1>
+        <p class="mt-2 text-sm sm:text-base md:text-lg text-gray-500">Your AI assistant for Manor Lords</p>
+    </header>
+
+    <nav class="bg-white border-b border-gray-200 p-4">
+        <ul class="flex justify-center space-x-4 sm:space-x-8 text-xs sm:text-sm">
+            <li><a href="#bot" class="text-gray-500 hover:text-accent transition duration-300">Bot</a></li>
+            <li><a href="#feedback" class="text-gray-500 hover:text-accent transition duration-300">Feedback</a></li>
+            <li><a href="#blog" class="text-gray-500 hover:text-accent transition duration-300">Blog</a></li>
+        </ul>
+    </nav>
+
+    <main class="container mx-auto mt-8 sm:mt-12 p-4">
+        <section id="bot" class="mb-12 sm:mb-16">
+            <h2 class="text-2xl sm:text-3xl font-light mb-4 sm:mb-6 text-primary">Manor Lords Bot</h2>
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200" style="height: 500px; max-height: 80vh;">
+                <iframe src="https://udify.app/chatbot/hTG7rr3dKO3aoHAr" style="width: 100%; height: 100%;"
+                    frameborder="0" allow="microphone">
+                </iframe>
+            </div>
+        </section>
+
+        <section id="feedback" class="mb-12 sm:mb-16">
+            <h2 class="text-2xl sm:text-3xl font-light mb-4 sm:mb-6 text-primary">Feedback</h2>
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-8">
+                <div class="flex justify-between sm:justify-center sm:space-x-8 mb-6 sm:mb-8">
+                    <div class="flex flex-col items-center">
+                        <button id="thumbsUp" class="p-1 sm:p-2 rounded-full hover:bg-gray-100 transition duration-300"
+                            onclick="toggleFeedback('thumbsUp')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8 text-blue-500"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                            </svg>
+                        </button>
+                        <span id="thumbsUpCount" class="mt-1 text-xs sm:text-sm font-semibold">0</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <button id="heart" class="p-1 sm:p-2 rounded-full hover:bg-gray-100 transition duration-300"
+                            onclick="toggleFeedback('heart')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8 text-red-500"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <span id="heartCount" class="mt-1 text-xs sm:text-sm font-semibold">0</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <button id="neutral" class="p-1 sm:p-2 rounded-full hover:bg-gray-100 transition duration-300"
+                            onclick="toggleFeedback('neutral')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8 text-yellow-500"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <span id="neutralCount" class="mt-1 text-xs sm:text-sm font-semibold">0</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <button id="thumbsDown"
+                            class="p-1 sm:p-2 rounded-full hover:bg-gray-100 transition duration-300"
+                            onclick="toggleFeedback('thumbsDown')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8 text-gray-500"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z" />
+                            </svg>
+                        </button>
+                        <span id="thumbsDownCount" class="mt-1 text-xs sm:text-sm font-semibold">0</span>
+                    </div>
+                </div>
+                <form action="mailto:yxiao84@outlook.com" method="post" enctype="text/plain">
+                    <textarea name="feedback" rows="4"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+                        placeholder="Your feedback..."></textarea>
+                    <button type="submit"
+                        class="mt-4 bg-accent text-white px-4 sm:px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300 text-xs sm:text-sm">Send
+                        Feedback</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="blog" class="mb-12 sm:mb-16">
+            <h2 class="text-2xl sm:text-3xl font-light mb-4 sm:mb-6 text-primary">Blog</h2>
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-8">
+                <article class="mb-6 sm:mb-8">
+                    <h3 class="text-lg sm:text-xl font-semibold text-primary">Welcome to Manor Lords Bot</h3>
+                    <p class="text-gray-500 mb-2 sm:mb-3 text-xs sm:text-sm">August 6, 2024</p>
+                    <p class="text-gray-700 text-sm sm:text-base">I'm excited to introduce the first version of the
+                        Manor Lords Bot! As a fan of the game, I'm committed to making the Manor Lords community better
+                        and easier for newbies.</p>
+                </article>
+                <article class="mb-6 sm:mb-8">
+                    <h3 class="text-lg sm:text-xl font-semibold text-primary">Future Plans: Community Discussion</h3>
+                    <p class="text-gray-500 mb-2 sm:mb-3 text-xs sm:text-sm">August 6, 2024</p>
+                    <p class="text-gray-700 text-sm sm:text-base">I'm always looking to improve your experience with
+                        Manor Lords Bot. Based on user feedback, I'm considering adding a discussion section to this
+                        website in the future. This would provide a space for our community to share strategies, ask
+                        questions, and connect with fellow Manor Lords enthusiasts. Stay tuned for updates, and feel
+                        free to let me know if this is a feature you'd like to see!</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-secondary text-gray-500 p-4 sm:p-6 mt-8 text-xs sm:text-sm">
+        <p>&copy; 2024 Manor Lords Bot. Created with passion for the Manor Lords community.</p>
+    </footer>
+
+    <script>
+        const feedbackStates = {
+            thumbsUp: false,
+            heart: false,
+            neutral: false,
+            thumbsDown: false
+        };
+
+        function toggleFeedback(type) {
+            const countElement = document.getElementById(`${type}Count`);
+            const button = document.getElementById(type);
+
+            if (feedbackStates[type]) {
+                feedbackStates[type] = false;
+                countElement.textContent = parseInt(countElement.textContent) - 1;
+                button.classList.remove('bg-gray-200');
+            } else {
+                feedbackStates[type] = true;
+                countElement.textContent = parseInt(countElement.textContent) + 1;
+                button.classList.add('bg-gray-200');
+            }
+        }
+    </script>
+</body>
+
+</html>
